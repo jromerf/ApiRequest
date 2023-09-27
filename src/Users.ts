@@ -1,6 +1,10 @@
 import { User } from "./types";
 
 class Users {
+    /**
+     * Como en el ejercicio anterior se cumple con el principio de responsabilidad única, 
+     * se utiliza un Map para facilitar las busquedas y la eficiencia de ésta. 
+     */
 
     private _users = new Map<number, User>();
 
@@ -39,7 +43,7 @@ class Users {
             fetch(`https://dummyjson.com/users/${id}`)
             .then(async (res) => {
                 if(!res.ok)
-                    throw `HTTP error with code status ${res.status}`;
+                    rej(`HTTP error with code status ${res.status}`);
                 return await res.json();
             })
             .then(user => {
